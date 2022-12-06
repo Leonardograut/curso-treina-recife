@@ -46,7 +46,8 @@ public class LeadController {
     public ResponseEntity<Optional<Lead>>delete(@PathVariable Long id){
         Optional<Lead>optionalLead=leadRepository.findById(id);
         if (optionalLead.isPresent()){
-          return ResponseEntity.status(HttpStatus.OK).body(optionalLead);
+            leadRepository.deleteById(id);
+          return ResponseEntity.status(HttpStatus.OK).build();
 
         }else{
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
